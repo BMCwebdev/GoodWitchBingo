@@ -40,7 +40,7 @@ function App() {
         />
       </main>
       <Controls onReset={handleReset} isWon={isWon} />
-      <WinCelebration isVisible={isWon} />
+      <WinCelebration isVisible={isWon} onRestart={handleReset} />
     </div>
   );
 }

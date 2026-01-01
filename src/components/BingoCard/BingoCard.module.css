@@ -1,9 +1,9 @@
 .cardContainer {
   width: 100%;
   /* CRITICAL: Ensure card fits in viewport without scrolling */
-  max-width: min(95vw, 600px);
+  max-width: min(98vw, 600px);
   margin: 0 auto;
-  padding: var(--spacing-md);
+  padding: var(--spacing-xs);
 }
 
 .grid {
@@ -29,8 +29,8 @@
 /* Tablet and up */
 @media (min-width: 640px) {
   .cardContainer {
-    max-width: min(90vw, 600px);
-    padding: var(--spacing-lg);
+    max-width: min(95vw, 600px);
+    padding: var(--spacing-sm);
   }
 
   .grid {
