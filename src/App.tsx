@@ -11,6 +11,7 @@ import styles from './App.module.css';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [backdropKey, setBackdropKey] = useState(0);
   const { card, toggleSquare, resetCard } = useBingoCard();
   const { isWon, winPattern } = useWinDetection(card);
 
@@ -20,6 +21,7 @@ function App() {
 
   const handleReset = () => {
     resetCard();
+    setBackdropKey(prev => prev + 1);
   };
 
   if (isLoading) {
@@ -28,7 +30,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <BackdropImage />
+      <BackdropImage refreshKey={backdropKey} />
       <Header />
       <main className={styles.main}>
         <BingoCard
