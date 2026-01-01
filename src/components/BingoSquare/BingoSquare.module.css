@@ -6,11 +6,15 @@
   min-width: var(--min-tap-target);
   min-height: var(--min-tap-target);
 
+  /* Enable container queries for text sizing */
+  container-type: size;
+  container-name: square;
+
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-xs);
+  padding: 8cqmin;
 
   background-color: var(--color-bg-alt);
   border: 2px solid var(--color-primary-light);
@@ -44,14 +48,16 @@
 
 .text {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   /* CRITICAL: Text wrapping without truncation */
   word-wrap: break-word;
-  word-break: break-word;
+  overflow-wrap: break-word;
   hyphens: auto;
-  line-height: 1.1;
+  line-height: 1.15;
   max-width: 100%;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 1;
 }

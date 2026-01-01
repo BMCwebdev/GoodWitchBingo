@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { BingoSquare as BingoSquareType } from '@/types';
-import { getFontSizeForCategory } from '@/utils/textSize';
+import { getDynamicFontSize } from '@/utils/textSize';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { playWindChime } from '@/utils/audio';
 import styles from './BingoSquare.module.css';
@@ -61,7 +61,7 @@ export function BingoSquare({
         square.isMarked ? ', marked' : ''
       }`}
       style={{
-        fontSize: getFontSizeForCategory(square.textSize),
+        fontSize: getDynamicFontSize(square.text),
       }}
     >
       <span className={styles.text}>{square.text}</span>
