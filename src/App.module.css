@@ -3,7 +3,8 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-bg);
+  /* Transparent to allow backdrop image to show through */
+  background-color: transparent;
 }
 
 .main {

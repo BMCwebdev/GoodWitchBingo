@@ -5,14 +5,14 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.12;
-  filter: blur(3px);
+  opacity: 0.25;
+  filter: blur(2px);
   pointer-events: none;
 }
 
 /* Slightly higher opacity on larger screens where it's less distracting */
 @media (min-width: 768px) {
   .backdrop {
-    opacity: 0.15;
+    opacity: 0.3;
   }
 }

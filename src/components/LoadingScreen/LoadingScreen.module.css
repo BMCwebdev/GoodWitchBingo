@@ -44,3 +44,46 @@
   filter: drop-shadow(0 0 8px currentColor);
   color: var(--color-accent);
 }
+
+.tapToStart {
+  display: inline-block;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  background: linear-gradient(135deg, #fff, var(--color-bg));
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.tapToStart:hover,
+.tapToStart:focus {
+  transform: scale(1.05);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.tapToStart:active {
+  transform: scale(0.98);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow:
+      0 4px 15px rgba(0, 0, 0, 0.2),
+      0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 4px 15px rgba(0, 0, 0, 0.2),
+      0 0 40px rgba(255, 255, 255, 0.5);
+  }
+}
