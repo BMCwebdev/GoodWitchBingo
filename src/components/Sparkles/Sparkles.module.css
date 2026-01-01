@@ -1,0 +1,12 @@
+.container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: clamp(1rem, 3vw, 2rem);
+  pointer-events: none;
+}

@@ -1,0 +1,111 @@
+.square {
+  /* CRITICAL: Aspect ratio ensures squares stay square */
+  aspect-ratio: 1;
+
+  /* CRITICAL: Minimum tap target size for mobile accessibility */
+  min-width: var(--min-tap-target);
+  min-height: var(--min-tap-target);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs);
+
+  background-color: var(--color-bg-alt);
+  border: 2px solid var(--color-primary-light);
+  border-radius: var(--radius-md);
+
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-text);
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  transition: all var(--transition-base);
+
+  /* Ensure text doesn't overflow */
+  overflow: hidden;
+}
+
+.text {
+  /* CRITICAL: Text wrapping without truncation */
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  line-height: 1.1;
+  max-width: 100%;
+  display: block;
+}
+
+/* Hover state (non-touch devices) */
+@media (hover: hover) {
+  .square:hover:not(.marked):not(.freeSpace) {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+/* Marked state */
+.square.marked {
+  background-color: var(--color-marked);
+  border-color: var(--color-marked-hover);
+  color: white;
+}
+
+.square.marked:hover {
+  background-color: var(--color-marked-hover);
+}
+
+/* Free space state */
+.square.freeSpace {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+  border-color: var(--color-primary-dark);
+  color: white;
+  font-weight: 700;
+  cursor: default;
+}
+
+/* Winning pattern highlight */
+.square.winning {
+  animation: winPulse 1s ease-in-out infinite;
+  border-color: var(--color-win);
+  box-shadow: 0 0 20px var(--color-win);
+}
+
+@keyframes winPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+/* Focus state for keyboard navigation */
+.square:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  z-index: var(--z-base);
+}

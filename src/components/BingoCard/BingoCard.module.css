@@ -1,0 +1,50 @@
+.cardContainer {
+  width: 100%;
+  /* CRITICAL: Ensure card fits in viewport without scrolling */
+  max-width: min(95vw, 600px);
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+
+  /* CRITICAL: Gap that scales with viewport */
+  gap: clamp(4px, 1vw, 8px);
+
+  /* CRITICAL: Constrain height to ensure no scrolling on mobile */
+  /* Calculate max height: viewport - header - controls - padding */
+  max-height: min(
+    95vw,
+    calc(100vh - 120px), /* Account for header + controls */
+    calc(100dvh - 120px) /* Dynamic viewport height for mobile */
+  );
+
+  width: 100%;
+  aspect-ratio: 1; /* Keep grid square */
+}
+
+/* Tablet and up */
+@media (min-width: 640px) {
+  .cardContainer {
+    max-width: min(90vw, 600px);
+    padding: var(--spacing-lg);
+  }
+
+  .grid {
+    gap: clamp(6px, 1.5vw, 12px);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .cardContainer {
+    max-width: 600px;
+  }
+
+  .grid {
+    gap: 12px;
+  }
+}

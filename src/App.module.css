@@ -1,0 +1,24 @@
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Ensure main doesn't cause scrolling issues */
+@media (max-height: 700px) {
+  .main {
+    padding: var(--spacing-xs);
+  }
+}
