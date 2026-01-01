@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8cqmin;
+  padding: 4cqmin;
 
   background-color: var(--color-bg-alt);
   border: 2px solid var(--color-primary-light);

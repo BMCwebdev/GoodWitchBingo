@@ -42,25 +42,24 @@ export function getFontSizeForCategory(category: TextSizeCategory): string {
 /**
  * Calculate dynamic font size based on text length.
  * Returns a cqmin value that scales inversely with text length.
+ * cqmin = 1% of the smaller container dimension.
  */
 export function getDynamicFontSize(text: string): string {
   const length = text.trim().length;
 
-  // Base size decreases as text gets longer
-  // Short text (1-10): ~20cqmin
-  // Medium text (11-25): ~15cqmin
-  // Long text (26-40): ~12cqmin
-  // Very long (40+): ~10cqmin
+  // Much smaller values to prevent overflow
+  // Short text (1-8): largest
+  // Scales down as text gets longer
 
-  if (length <= 10) {
-    return '20cqmin';
-  } else if (length <= 18) {
-    return '16cqmin';
-  } else if (length <= 28) {
-    return '13cqmin';
-  } else if (length <= 40) {
-    return '11cqmin';
-  } else {
+  if (length <= 8) {
     return '9cqmin';
+  } else if (length <= 15) {
+    return '7cqmin';
+  } else if (length <= 25) {
+    return '5.5cqmin';
+  } else if (length <= 40) {
+    return '4.5cqmin';
+  } else {
+    return '4cqmin';
   }
 }
