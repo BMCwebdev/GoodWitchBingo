@@ -6,15 +6,11 @@
   min-width: var(--min-tap-target);
   min-height: var(--min-tap-target);
 
-  /* Enable container queries for text sizing */
-  container-type: size;
-  container-name: square;
-
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4cqmin;
+  padding: var(--spacing-xs);
 
   background-color: var(--color-bg-alt);
   border: 2px solid var(--color-primary-light);
