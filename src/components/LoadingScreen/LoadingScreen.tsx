@@ -47,8 +47,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             ease: 'backOut',
           }}
         >
-          <img src={splashImage} alt="" className={styles.icon} aria-hidden="true" />
-          <h2 className={styles.title}>Good Witch Bingo</h2>
+          <img src={splashImage} alt="Good Witch Bingo" className={styles.icon} />
           <button
             className={styles.tapToStart}
             onClick={handleTapToStart}
@@ -86,8 +85,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           ease: 'backOut',
         }}
       >
-        <img src={splashImage} alt="" className={styles.icon} aria-hidden="true" />
-        <h2 className={styles.title}>Good Witch Bingo</h2>
+        <img src={splashImage} alt="Good Witch Bingo" className={styles.icon} />
         <motion.div
           className={styles.spinner}
           animate={

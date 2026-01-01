@@ -36,10 +36,11 @@
 }
 
 .tagline {
-  font-family: var(--font-script);
+  font-family: var(--font-heading);
+  font-style: italic;
   text-align: center;
   color: rgba(255, 255, 255, 0.9);
-  font-size: clamp(0.9rem, 2.5vw, 1.25rem);
+  font-size: clamp(0.85rem, 2.5vw, 1.1rem);
   margin: var(--spacing-xs) 0 0 0;
   font-weight: 400;
   letter-spacing: 0.02em;

@@ -1,16 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { playWinMusic } from '@/utils/audio';
 import { Sparkles } from '../Sparkles/Sparkles';
 import styles from './WinCelebration.module.css';
 
+// Cassie Nightingale quotes about winning/success/magic
+const CASSIE_QUOTES = [
+  "There's a little magic in all of us.",
+  "Luck favors the prepared.",
+  "Just because we don't see it doesn't mean it's not there.",
+  "We all have an internal compass that points us in the right direction.",
+  "Present opportunities are not to be neglected.",
+  "I think knowing how to share our gifts with the world is as important as recognizing what gifts we have to share.",
+];
+
 interface WinCelebrationProps {
   isVisible: boolean;
+  onRestart: () => void;
 }
 
-export function WinCelebration({ isVisible }: WinCelebrationProps) {
+export function WinCelebration({ isVisible, onRestart }: WinCelebrationProps) {
   const prefersReducedMotion = useReducedMotion();
+
+  // Pick a random quote when visible
+  const quote = useMemo(() => {
+    return CASSIE_QUOTES[Math.floor(Math.random() * CASSIE_QUOTES.length)];
+  }, [isVisible]);
 
   // Play theme music when winning
   useEffect(() => {
@@ -18,6 +34,10 @@ export function WinCelebration({ isVisible }: WinCelebrationProps) {
       playWinMusic();
     }
   }, [isVisible]);
+
+  const handleClick = () => {
+    onRestart();
+  };
 
   return (
     <AnimatePresence>
@@ -28,6 +48,7 @@ export function WinCelebration({ isVisible }: WinCelebrationProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: prefersReducedMotion ? 0.01 : 0.3 }}
+          onClick={handleClick}
         >
           <Sparkles />
           <motion.div
@@ -41,7 +62,8 @@ export function WinCelebration({ isVisible }: WinCelebrationProps) {
           >
             <div className={styles.emoji}>🎉</div>
             <h2 className={styles.title}>BINGO!</h2>
-            <p className={styles.subtitle}>You did it!</p>
+            <p className={styles.quote}>"{quote}"</p>
+            <p className={styles.tapHint}>Tap to play again</p>
           </motion.div>
         </motion.div>
       )}
