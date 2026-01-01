@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { isSoundEnabled, setSoundEnabled } from '@/utils/audio';
-import vintageRadio from '@/assets/vintage-radio.svg';
+import sparkleIcon from '@/assets/sparkles/sparkle-8point.svg';
 import styles from './Controls.module.css';
 
 interface ControlsProps {
@@ -40,7 +40,7 @@ export function Controls({ onReset, isWon }: ControlsProps) {
         aria-label={soundOn ? 'Mute sound' : 'Unmute sound'}
         title={soundOn ? 'Mute sound' : 'Unmute sound'}
       >
-        <img src={vintageRadio} alt="" aria-hidden="true" />
+        <img src={sparkleIcon} alt="" aria-hidden="true" />
       </button>
       <button
         className={styles.resetButton}

@@ -28,6 +28,7 @@ export function Header() {
           ✨
         </span>
       </h1>
+      <p className={styles.tagline}>There's a little magic in all of us</p>
     </motion.header>
   );
 }

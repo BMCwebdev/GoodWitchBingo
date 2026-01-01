@@ -2,9 +2,13 @@ import { useMemo } from 'react';
 import { getRandomBackdrop } from '@/utils/getRandomBackdrop';
 import styles from './BackdropImage.module.css';
 
-export function BackdropImage() {
-  // Select random backdrop once on mount
-  const backdrop = useMemo(() => getRandomBackdrop(), []);
+interface BackdropImageProps {
+  refreshKey?: number;
+}
+
+export function BackdropImage({ refreshKey = 0 }: BackdropImageProps) {
+  // Select random backdrop, changes when refreshKey changes
+  const backdrop = useMemo(() => getRandomBackdrop(), [refreshKey]);
 
   return (
     <div

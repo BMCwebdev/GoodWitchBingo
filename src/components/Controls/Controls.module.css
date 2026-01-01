@@ -31,13 +31,24 @@
 .soundButton img {
   width: clamp(24px, 4vw, 32px);
   height: auto;
-  color: var(--color-primary);
+  color: var(--color-accent);
   transition: all var(--transition-base);
+  animation: sparkleRotate 4s linear infinite;
 }
 
 .soundButton.muted img {
-  opacity: 0.4;
+  opacity: 0.3;
   filter: grayscale(1);
+  animation: none;
+}
+
+@keyframes sparkleRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .soundButton:hover {
