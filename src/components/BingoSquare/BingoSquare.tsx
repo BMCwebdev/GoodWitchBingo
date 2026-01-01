@@ -24,7 +24,7 @@ export function BingoSquare({
   const textRef = useRef<HTMLSpanElement>(null);
   const [fontSize, setFontSize] = useState(16);
 
-  // Fit text to container
+  // Fit text to container using scrollHeight for overflow detection
   useLayoutEffect(() => {
     const container = containerRef.current;
     const textEl = textRef.current;
@@ -38,15 +38,20 @@ export function BingoSquare({
       const availableWidth = container.clientWidth - paddingX;
       const availableHeight = container.clientHeight - paddingY;
 
-      // Linear search from large to small - more reliable than binary search
-      // because text wrapping makes the size/overflow relationship non-monotonic
+      // Set width so text wraps correctly, but don't constrain height
+      // This allows scrollHeight to report true content height
+      textEl.style.width = `${availableWidth}px`;
+
+      // Linear search from large to small
       for (let size = 32; size >= 8; size--) {
         textEl.style.fontSize = `${size}px`;
 
-        // Force reflow and get accurate bounds
-        const rect = textEl.getBoundingClientRect();
+        // Force reflow
+        void textEl.offsetHeight;
 
-        if (rect.width <= availableWidth && rect.height <= availableHeight) {
+        // scrollHeight includes content that would overflow
+        // If scrollHeight <= availableHeight, the text fits
+        if (textEl.scrollHeight <= availableHeight) {
           setFontSize(size);
           return;
         }
@@ -57,12 +62,12 @@ export function BingoSquare({
     };
 
     // Initial fit after layout
-    const timer = setTimeout(fit, 10);
+    let timer = setTimeout(fit, 10);
 
     const observer = new ResizeObserver(() => {
       // Debounce resize
       clearTimeout(timer);
-      setTimeout(fit, 10);
+      timer = setTimeout(fit, 10);
     });
     observer.observe(container);
 
