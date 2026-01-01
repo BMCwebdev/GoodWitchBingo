@@ -47,19 +47,14 @@ export function getFontSizeForCategory(category: TextSizeCategory): string {
 export function getDynamicFontSize(text: string): string {
   const length = text.trim().length;
 
-  // Much smaller values to prevent overflow
-  // Short text (1-8): largest
-  // Scales down as text gets longer
-
-  if (length <= 8) {
-    return '9cqmin';
-  } else if (length <= 15) {
-    return '7cqmin';
-  } else if (length <= 25) {
-    return '5.5cqmin';
-  } else if (length <= 40) {
+  // Very conservative values to ensure text fits
+  if (length <= 10) {
     return '4.5cqmin';
+  } else if (length <= 20) {
+    return '3.5cqmin';
+  } else if (length <= 35) {
+    return '2.8cqmin';
   } else {
-    return '4cqmin';
+    return '2.2cqmin';
   }
 }
