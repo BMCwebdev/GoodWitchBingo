@@ -1,22 +1,22 @@
 :root {
-  /* Color Palette - Good Witch Theme */
-  --color-primary: #8B7B9B; /* Soft purple */
-  --color-primary-light: #B8A9C9; /* Dusty lavender */
-  --color-primary-dark: #6B5B5B; /* Soft grey-brown */
+  /* Color Palette - Good Witch Theme (Deep & Rich) */
+  --color-primary: #6B5380; /* Rich plum purple */
+  --color-primary-light: #9B86B5; /* Soft lavender */
+  --color-primary-dark: #4A3A5C; /* Deep purple */
 
-  --color-accent: #C9A961; /* Muted gold */
-  --color-accent-light: #8FA779; /* Sage green */
+  --color-accent: #B8956A; /* Warm antique gold */
+  --color-accent-light: #88A67E; /* Natural sage */
 
-  --color-bg: #F5F0E6; /* Warm cream */
-  --color-bg-alt: #FFFBF5; /* Warm off-white */
+  --color-bg: #FAF6F0; /* Warm parchment */
+  --color-bg-alt: #FFFDF9; /* Cream white */
 
-  --color-text: #3D3630; /* Warm dark brown */
-  --color-text-light: #6B5B5B; /* Soft grey-brown */
+  --color-text: #2E2420; /* Rich brown */
+  --color-text-light: #6B5D58; /* Warm grey */
 
-  --color-marked: #8FA779; /* Sage green for marked squares */
-  --color-marked-hover: #7A8F6A; /* Darker sage */
+  --color-marked: #88A67E; /* Natural sage for marked squares */
+  --color-marked-hover: #6E8A65; /* Deep sage */
 
-  --color-win: #C9A961; /* Muted gold for winning pattern */
+  --color-win: #B8956A; /* Antique gold for winning pattern */
 
   /* Typography */
   --font-heading: 'Playfair Display', 'Georgia', serif;
