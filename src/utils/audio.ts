@@ -140,7 +140,7 @@ export function playWindChime(): void {
 }
 
 /**
- * Play theme music on loading screen (plays for ~5 seconds then fades out)
+ * Play theme music on loading screen (plays for ~7 seconds then fades out)
  */
 export function playLoadingMusic(): void {
   queueOrPlay(() => {
@@ -150,15 +150,15 @@ export function playLoadingMusic(): void {
     music.seek(0);
     music.play();
 
-    // Fade out after 5 seconds
+    // Fade out after 7 seconds
     setTimeout(() => {
       music.fade(0.4, 0, 1000);
-    }, 5000);
+    }, 7000);
   });
 }
 
 /**
- * Play theme music on win celebration (plays for ~8 seconds then fades out)
+ * Play theme music on win celebration (plays for ~9 seconds then fades out)
  */
 export function playWinMusic(): void {
   queueOrPlay(() => {
@@ -172,10 +172,10 @@ export function playWinMusic(): void {
     music.seek(0);
     music.play();
 
-    // Fade out after 8 seconds
+    // Fade out after 9 seconds
     setTimeout(() => {
       music.fade(0.5, 0, 1500);
-    }, 8000);
+    }, 9000);
   });
 }
 
