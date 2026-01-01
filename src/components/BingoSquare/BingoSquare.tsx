@@ -35,40 +35,35 @@ export function BingoSquare({
       const paddingX = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
       const paddingY = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
 
-      // Safety margin to prevent clipping
-      const availableWidth = container.clientWidth - paddingX - 2;
-      const availableHeight = container.clientHeight - paddingY - 2;
+      const availableWidth = container.clientWidth - paddingX;
+      const availableHeight = container.clientHeight - paddingY;
 
-      // Binary search for optimal font size
-      let low = 6;
-      let high = 22;
-      let best = low;
+      // Linear search from large to small - more reliable than binary search
+      // because text wrapping makes the size/overflow relationship non-monotonic
+      for (let size = 32; size >= 8; size--) {
+        textEl.style.fontSize = `${size}px`;
 
-      while (low <= high) {
-        const mid = Math.floor((low + high) / 2);
-        textEl.style.fontSize = `${mid}px`;
+        // Force reflow and get accurate bounds
+        const rect = textEl.getBoundingClientRect();
 
-        // Force layout recalc
-        void textEl.offsetHeight;
-
-        if (textEl.scrollWidth <= availableWidth && textEl.scrollHeight <= availableHeight) {
-          best = mid;
-          low = mid + 1;
-        } else {
-          high = mid - 1;
+        if (rect.width <= availableWidth && rect.height <= availableHeight) {
+          setFontSize(size);
+          return;
         }
       }
 
-      // Apply best size and subtract 1 for safety
-      const finalSize = Math.max(low > 6 ? best - 1 : best, 6);
-      textEl.style.fontSize = `${finalSize}px`;
-      setFontSize(finalSize);
+      // Fallback to minimum
+      setFontSize(8);
     };
 
-    // Initial fit
-    const timer = setTimeout(fit, 50);
+    // Initial fit after layout
+    const timer = setTimeout(fit, 10);
 
-    const observer = new ResizeObserver(fit);
+    const observer = new ResizeObserver(() => {
+      // Debounce resize
+      clearTimeout(timer);
+      setTimeout(fit, 10);
+    });
     observer.observe(container);
 
     return () => {
