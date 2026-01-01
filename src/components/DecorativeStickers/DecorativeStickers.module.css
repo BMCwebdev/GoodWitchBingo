@@ -1,0 +1,66 @@
+.sticker {
+  position: fixed;
+  width: clamp(60px, 8vw, 120px);
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.6;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+}
+
+.top-left {
+  top: var(--spacing-lg);
+  left: var(--spacing-lg);
+}
+
+.top-right {
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+}
+
+.bottom-left {
+  bottom: var(--spacing-lg);
+  left: var(--spacing-lg);
+}
+
+.bottom-right {
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+}
+
+/* On mobile, make stickers smaller and closer to edges */
+@media (max-width: 640px) {
+  .sticker {
+    width: clamp(40px, 10vw, 80px);
+  }
+
+  .top-left,
+  .top-right,
+  .bottom-left,
+  .bottom-right {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    bottom: var(--spacing-sm);
+    left: var(--spacing-sm);
+  }
+
+  .top-left {
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+  }
+
+  .top-right {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+  }
+
+  .bottom-left {
+    bottom: var(--spacing-sm);
+    left: var(--spacing-sm);
+  }
+
+  .bottom-right {
+    bottom: var(--spacing-sm);
+    right: var(--spacing-sm);
+  }
+}

@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import sparkle4Point from '@/assets/sparkles/sparkle-4point.svg';
+import sparkle8Point from '@/assets/sparkles/sparkle-8point.svg';
+import sparkleCircle from '@/assets/sparkles/sparkle-circle.svg';
 import styles from './Sparkles.module.css';
+
+const sparkleTypes = [sparkle4Point, sparkle8Point, sparkleCircle];
 
 export function Sparkles() {
   const prefersReducedMotion = useReducedMotion();
@@ -9,12 +14,14 @@ export function Sparkles() {
     return null;
   }
 
-  // Generate random sparkle positions
+  // Generate random sparkle positions with type and rotation
   const sparkles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
     left: `${Math.random() * 100}%`,
     top: `${Math.random() * 100}%`,
     delay: Math.random() * 2,
+    type: sparkleTypes[Math.floor(Math.random() * sparkleTypes.length)],
+    rotation: Math.random() * 360,
   }));
 
   return (
@@ -39,7 +46,12 @@ export function Sparkles() {
             ease: 'easeInOut',
           }}
         >
-          ✨
+          <img
+            src={sparkle.type}
+            alt=""
+            aria-hidden="true"
+            style={{ transform: `rotate(${sparkle.rotation}deg)` }}
+          />
         </motion.div>
       ))}
     </div>

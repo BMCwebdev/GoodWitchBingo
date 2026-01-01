@@ -11,6 +11,7 @@
 }
 
 .title {
+  font-family: var(--font-heading);
   text-align: center;
   color: white;
   font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -20,11 +21,18 @@
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .emoji {
   font-size: 1.2em;
+}
+
+.splashIcon {
+  height: 2em;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  border-radius: var(--radius-sm);
 }
 
 @media (min-width: 640px) {

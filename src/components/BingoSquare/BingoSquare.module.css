@@ -30,7 +30,21 @@
   overflow: hidden;
 }
 
+/* Subtle texture overlay on squares */
+.square::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--texture-noise);
+  border-radius: inherit;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .text {
+  font-family: var(--font-body);
+  font-weight: 400;
   /* CRITICAL: Text wrapping without truncation */
   word-wrap: break-word;
   word-break: break-word;
@@ -38,6 +52,8 @@
   line-height: 1.1;
   max-width: 100%;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 /* Hover state (non-touch devices) */
@@ -101,6 +117,7 @@
   color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   pointer-events: none;
+  z-index: 1;
 }
 
 /* Focus state for keyboard navigation */

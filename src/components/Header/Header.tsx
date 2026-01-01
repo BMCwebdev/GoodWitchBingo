@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import splashImage from '@/assets/random-images/splash.png';
 import styles from './Header.module.css';
 
 export function Header() {
@@ -16,9 +17,12 @@ export function Header() {
       }}
     >
       <h1 className={styles.title}>
-        <span className={styles.emoji} role="img" aria-label="witch">
-          🧙‍♀️
-        </span>
+        <img
+          src={splashImage}
+          alt=""
+          className={styles.splashIcon}
+          aria-hidden="true"
+        />
         Good Witch Bingo
         <span className={styles.emoji} role="img" aria-label="sparkles">
           ✨

@@ -1,5 +1,9 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { playLoadingMusic } from '@/utils/audio';
+import splashImage from '@/assets/random-images/splash.png';
+import sparkle8Point from '@/assets/sparkles/sparkle-8point.svg';
 import styles from './LoadingScreen.module.css';
 
 interface LoadingScreenProps {
@@ -8,6 +12,11 @@ interface LoadingScreenProps {
 
 export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const prefersReducedMotion = useReducedMotion();
+
+  // Play theme music on mount
+  useEffect(() => {
+    playLoadingMusic();
+  }, []);
 
   return (
     <motion.div
@@ -29,7 +38,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           ease: 'backOut',
         }}
       >
-        <div className={styles.icon}>🧙‍♀️</div>
+        <img src={splashImage} alt="" className={styles.icon} aria-hidden="true" />
         <h2 className={styles.title}>Good Witch Bingo</h2>
         <motion.div
           className={styles.spinner}
@@ -46,7 +55,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             ease: 'linear',
           }}
         >
-          ✨
+          <img src={sparkle8Point} alt="" aria-hidden="true" />
         </motion.div>
       </motion.div>
     </motion.div>

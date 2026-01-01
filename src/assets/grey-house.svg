@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+  <!-- Roof -->
+  <path d="M10 45 L50 15 L90 45 Z"/>
+  <!-- House body -->
+  <rect x="15" y="45" width="70" height="45"/>
+  <!-- Chimney -->
+  <rect x="65" y="25" width="10" height="20"/>
+  <!-- Door -->
+  <rect x="42" y="65" width="16" height="25" fill="#00000020"/>
+  <!-- Windows -->
+  <rect x="25" y="55" width="12" height="12" fill="#00000020"/>
+  <rect x="63" y="55" width="12" height="12" fill="#00000020"/>
+</svg>

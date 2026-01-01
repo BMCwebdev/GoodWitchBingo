@@ -4,6 +4,59 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: var(--spacing-md);
+}
+
+.soundButton {
+  /* CRITICAL: Ensure minimum tap target size */
+  min-width: var(--min-tap-target);
+  min-height: var(--min-tap-target);
+  padding: var(--spacing-sm);
+
+  background: var(--color-bg-alt);
+  border: 2px solid var(--color-primary-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+
+  cursor: pointer;
+  transition: all var(--transition-base);
+
+  -webkit-tap-highlight-color: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.soundButton img {
+  width: clamp(24px, 4vw, 32px);
+  height: auto;
+  color: var(--color-primary);
+  transition: all var(--transition-base);
+}
+
+.soundButton.muted img {
+  opacity: 0.4;
+  filter: grayscale(1);
+}
+
+.soundButton:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.soundButton:hover img {
+  color: white;
+}
+
+.soundButton:active {
+  transform: translateY(0);
+}
+
+.soundButton:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 .resetButton {

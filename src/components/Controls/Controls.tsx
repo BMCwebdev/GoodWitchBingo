@@ -1,5 +1,8 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { isSoundEnabled, setSoundEnabled } from '@/utils/audio';
+import vintageRadio from '@/assets/vintage-radio.svg';
 import styles from './Controls.module.css';
 
 interface ControlsProps {
@@ -9,6 +12,17 @@ interface ControlsProps {
 
 export function Controls({ onReset, isWon }: ControlsProps) {
   const prefersReducedMotion = useReducedMotion();
+  const [soundOn, setSoundOn] = useState(isSoundEnabled());
+
+  useEffect(() => {
+    setSoundOn(isSoundEnabled());
+  }, []);
+
+  const toggleSound = () => {
+    const newValue = !soundOn;
+    setSoundOn(newValue);
+    setSoundEnabled(newValue);
+  };
 
   return (
     <motion.div
@@ -20,6 +34,14 @@ export function Controls({ onReset, isWon }: ControlsProps) {
         delay: prefersReducedMotion ? 0 : 0.3,
       }}
     >
+      <button
+        className={`${styles.soundButton} ${!soundOn ? styles.muted : ''}`}
+        onClick={toggleSound}
+        aria-label={soundOn ? 'Mute sound' : 'Unmute sound'}
+        title={soundOn ? 'Mute sound' : 'Unmute sound'}
+      >
+        <img src={vintageRadio} alt="" aria-hidden="true" />
+      </button>
       <button
         className={styles.resetButton}
         onClick={onReset}

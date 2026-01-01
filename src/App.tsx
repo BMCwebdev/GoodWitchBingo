@@ -4,6 +4,7 @@ import { BingoCard } from './components/BingoCard/BingoCard';
 import { Controls } from './components/Controls/Controls';
 import { LoadingScreen } from './components/LoadingScreen/LoadingScreen';
 import { WinCelebration } from './components/WinCelebration/WinCelebration';
+import { BackdropImage } from './components/BackdropImage/BackdropImage';
 import { useBingoCard } from './hooks/useBingoCard';
 import { useWinDetection } from './hooks/useWinDetection';
 import styles from './App.module.css';
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <div className={styles.app}>
+      <BackdropImage />
       <Header />
       <main className={styles.main}>
         <BingoCard

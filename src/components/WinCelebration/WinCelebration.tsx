@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { playWinMusic } from '@/utils/audio';
 import { Sparkles } from '../Sparkles/Sparkles';
 import styles from './WinCelebration.module.css';
 
@@ -9,6 +11,13 @@ interface WinCelebrationProps {
 
 export function WinCelebration({ isVisible }: WinCelebrationProps) {
   const prefersReducedMotion = useReducedMotion();
+
+  // Play theme music when winning
+  useEffect(() => {
+    if (isVisible) {
+      playWinMusic();
+    }
+  }, [isVisible]);
 
   return (
     <AnimatePresence>

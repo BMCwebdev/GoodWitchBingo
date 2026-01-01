@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { BingoSquare as BingoSquareType } from '@/types';
 import { getFontSizeForCategory } from '@/utils/textSize';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { playWindChime } from '@/utils/audio';
 import styles from './BingoSquare.module.css';
 
 interface BingoSquareProps {
@@ -22,6 +23,10 @@ export function BingoSquare({
 
   const handleClick = () => {
     if (!square.isFreeSpace) {
+      // Play sound effect when marking a square
+      if (!square.isMarked) {
+        playWindChime();
+      }
       onClick();
     }
   };

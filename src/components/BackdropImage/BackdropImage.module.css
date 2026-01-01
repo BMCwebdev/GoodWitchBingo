@@ -1,0 +1,18 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+/* Slightly higher opacity on larger screens where it's less distracting */
+@media (min-width: 768px) {
+  .backdrop {
+    opacity: 0.15;
+  }
+}
