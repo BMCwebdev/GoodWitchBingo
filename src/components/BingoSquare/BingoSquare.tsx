@@ -1,7 +1,7 @@
+import { useLayoutEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { BingoSquare as BingoSquareType } from '@/types';
-import { getDynamicFontSize } from '@/utils/textSize';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { playWindChime } from '@/utils/audio';
 import styles from './BingoSquare.module.css';
@@ -20,10 +20,58 @@ export function BingoSquare({
   animationDelay,
 }: BingoSquareProps) {
   const prefersReducedMotion = useReducedMotion();
+  const containerRef = useRef<HTMLButtonElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const [fontSize, setFontSize] = useState(16);
+
+  // Fit text to container
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    const textEl = textRef.current;
+    if (!container || !textEl) return;
+
+    const fit = () => {
+      const style = getComputedStyle(container);
+      const paddingX = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      const paddingY = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+
+      const availableWidth = container.clientWidth - paddingX;
+      const availableHeight = container.clientHeight - paddingY;
+
+      // Binary search for optimal font size
+      let low = 8;
+      let high = 28;
+      let best = low;
+
+      while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+        textEl.style.fontSize = `${mid}px`;
+
+        if (textEl.scrollWidth <= availableWidth && textEl.scrollHeight <= availableHeight) {
+          best = mid;
+          low = mid + 1;
+        } else {
+          high = mid - 1;
+        }
+      }
+
+      setFontSize(best);
+    };
+
+    // Initial fit after a short delay to ensure layout is complete
+    const timer = setTimeout(fit, 50);
+
+    const observer = new ResizeObserver(fit);
+    observer.observe(container);
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [square.text]);
 
   const handleClick = () => {
     if (!square.isFreeSpace) {
-      // Play sound effect when marking a square
       if (!square.isMarked) {
         playWindChime();
       }
@@ -40,6 +88,7 @@ export function BingoSquare({
 
   return (
     <motion.button
+      ref={containerRef}
       className={clsx(styles.square, {
         [styles.marked]: square.isMarked,
         [styles.freeSpace]: square.isFreeSpace,
@@ -60,11 +109,14 @@ export function BingoSquare({
       aria-label={`${square.text}${square.isFreeSpace ? ' (Free Space)' : ''}${
         square.isMarked ? ', marked' : ''
       }`}
-      style={{
-        fontSize: getDynamicFontSize(square.text),
-      }}
     >
-      <span className={styles.text}>{square.text}</span>
+      <span
+        ref={textRef}
+        className={styles.text}
+        style={{ fontSize: `${fontSize}px` }}
+      >
+        {square.text}
+      </span>
       {square.isMarked && (
         <motion.div
           className={styles.checkmark}
